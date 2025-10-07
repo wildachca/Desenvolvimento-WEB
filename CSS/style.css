@@ -1,25 +1,44 @@
+h1{
+    color: green;
+}
 
-@import 
-url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
+p{
+    color: red;
+}
 
+.note{
+    font-size: 20px;
+}
 
-body {  
-    background-color: black;  
-    color: white;  
+#id-selector-demo{
+    color: green;
+}
+
+li[value="4"]{
+    color: blue;
+}
+
+*{
     text-align: center;
 }
-.container {  
-    width: 50%;  
-    margin: 0 auto;
+
+h2{
+    font-weight: normal;
 }
-.container img {  
-    width: 100%;  
-    border: 5px solid white;
+
+#red{color: red;}
+#grenn{color: green;}
+#blue { color: blue; }
+#yellow{ color: yellow; }
+#orange{ color: orange; }
+#purple { color: purple; }
+#pink { color: pink; }
+#brown { color: brown; }
+#gray { color: gray; }
+#black { color: black; }
+
+img{
+    height: 200px;
+    width: 200px;
 }
-.container h1 {  
-    font-family: 'Libre Baskerville', serif;  
-    text-transform: uppercase;
-}
-.container p {  
-    font-size: 18px;
-}
+
