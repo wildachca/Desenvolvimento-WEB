@@ -1,0 +1,41 @@
+body{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 30px;
+    background-color: azure;
+}
+h2{
+    color: rgb(65, 0, 48);
+    margin-top: 4px;
+}
+
+.caixa{
+    padding: 10px;
+    margin: 10px;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    font-weight: bold;
+    border-radius: 6px;
+}
+
+.block{
+    background-color: rgb(202, 129, 250);
+    width: 250px;
+    height: 50px;
+    display: block;
+}
+
+.inline{
+    background-color: rgb(192, 15, 236);
+    display: inline;
+    width: 250;
+    height: 50;
+    padding: 5px;
+}
+
+.inline-block{
+    background-color: rgb(139, 27, 243);
+    display: inline-block;
+    width: 150px;
+    height: 80px;
+    line-height: 80px;
+}

@@ -1,0 +1,18 @@
+h1, h2{
+    color: #f85ade;
+}
+div > p{
+    color: #c42fff;
+}
+ul li{
+    color: #a40fdf;
+}
+ul li:nth-child(2)
+
+ul li:nth-child(3){
+    color: #c971fc;
+}
+
+h3{
+    margin-top: 30px;
+}
