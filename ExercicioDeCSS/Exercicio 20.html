@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mondrian Project</title>
+  <style>
+    body {  
+        margin: 0;  
+        padding: 0;  
+        display: flex;  
+        justify-content: center;  
+        align-items: center;  
+        min-height: 100vh;  
+        background-color: #f0f0f0;
+        
+    }
+
+.container {  
+    width: 748px;  
+    height: 748px;  
+    display: flex;  
+    flex-direction: column;  
+    background-color: #fff;  
+    border: 1px solid #fffcfc;  
+    box-sizing: border-box;
+}
+
+.top-row {  
+    display: flex;  
+    height: 414px;
+}
+
+.red-box {  
+    width: 320px;  
+    background-color: #e44d3d;  
+    height: 100%;
+    border: 10px solid;
+}
+
+.top-right {  
+    display: flex;  
+    flex-direction: column;  
+    flex-grow: 1;  
+    padding-left: 9px;
+}
+
+.top-right-gap {  
+    height: 414px;
+}
+
+.top-right-content {  
+    flex-grow: 1;  
+    display: flex;  
+    flex-direction: row;  
+    justify-content: flex-end;  
+    align-items: flex-start;  
+    padding-right: 153px;
+}
+
+.blue-box {  
+    width: 155px;  
+    height: 130px;  
+    background-color: #2167ac;  
+    border: 10px solid black;  
+    box-sizing: border-box;  
+    margin-top: 50px;
+}
+
+.bottom-row {  
+    display: flex;  
+    flex-grow: 1;
+}
+
+.bottom-left {  
+    display: flex;  
+    height: 198px;
+}
+
+.yellow-box {  
+    width: 198px; 
+    height: 153px;  
+    background-color: #fce319;
+    border: 10px solid;
+}
+
+.black-box {  
+    width: 153px;  
+    height: 153px;  
+    background-color: #2e2e2e;
+    border: 10px solid;
+}
+.bottom-right-empty {  
+    flex-grow: 1;
+}
+
+
+  </style>
+</head>
+
+<body>
+
+<div class="container">  
+    <div class="top-row">    
+        <div class="red-box"></div>    
+        <div class="top-right">      
+            <div class="top-right-gap"></div>      
+            <div class="top-right-content">        
+                <div class="blue-box"></div>      
+            </div>    
+        </div>  
+    </div>  
+    <div class="bottom-row">    
+        <div class="bottom-left">      
+            <div class="yellow-box"></div>      
+            <div class="black-box"></div>    
+        </div>    
+        <div class="bottom-right-empty"></div>  
+    </div>
+</div>
+</body>
+
+</html>
