@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de nomes</title>
+</head>
+<body>
+    <input id="nomeInput">
+    <button onclick="addNome()">Adicionar</button>
+    <button onclick="lista.innerHTML=''">Limpar</button>
+
+<ul id="lista"></ul>
+
+<script>
+function addNome(){
+    if(nomeInput.value)
+        lista.innerHTML += `<li>${nomeInput.value}</li>`
+    nomeInput.value = ''
+}
+</script>
+
+</body>
+</html>

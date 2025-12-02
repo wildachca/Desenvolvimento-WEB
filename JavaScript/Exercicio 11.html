@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Criar elementos dinamicamente</title>
+</head>
+<body>
+
+  <h2>Registro de Cliques</h2>
+
+  <button onclick="registrar()">Registrar clique</button>
+  <button onclick="limpar()">Limpar histórico</button>
+
+  <ul id="lista"></ul>
+
+  <script>
+    function registrar() {
+      const ul = document.getElementById("lista");
+      const li = document.createElement("li");
+
+      const data = new Date().toLocaleString();
+
+      li.textContent = "Clique registrado - " + data;
+      ul.appendChild(li);
+    }
+
+    function limpar() {
+      document.getElementById("lista").innerHTML = "";
+    }
+  </script>
+
+</body>
+</html>

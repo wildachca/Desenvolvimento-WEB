@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Sistema de Quiz com pontuação</title>
+</head>
+<body>
+
+  <h2>Quiz</h2>
+
+  <div id="quiz"></div>
+  <button onclick="finalizar()">Finalizar</button>
+  <button onclick="reiniciar()">Reiniciar</button>
+
+  <p id="resultado"></p>
+
+  <script>
+    const perguntas = [
+      { q: "Qual linguagem roda no navegador?", a: "JS", op: ["JS", "Python", "C"] },
+      { q: "Qual tag cria título?", a: "h1", op: ["div", "p", "h1"] },
+      { q: "Qual comando mostra no console?", a: "console.log", op: ["print", "console.log", "msg"] },
+      { q: "CSS serve para?", a: "aparência", op: ["lógica", "banco", "aparência"] },
+      { q: "HTML define?", a: "estrutura", op: ["cálculos", "apps", "estrutura"] }
+    ];
+
+    function carregarQuiz() {
+      const div = document.getElementById("quiz");
+      div.innerHTML = "";
+
+      perguntas.forEach((p, i) => {
+        const bloco = document.createElement("div");
+        bloco.innerHTML = `<p>${i + 1}. ${p.q}</p>`;
+
+        p.op.forEach(opcao => {
+          bloco.innerHTML += `
+            <label>
+              <input type="radio" name="p${i}" value="${opcao}"> ${opcao}
+            </label><br>
+          `;
+        });
+
+        div.appendChild(bloco);
+      });
+    }
+
+    function finalizar() {
+      let pontos = 0;
+
+      perguntas.forEach((p, i) => {
+        const marcada = document.querySelector(`input[name="p${i}"]:checked`);
+        if (marcada && marcada.value === p.a) pontos++;
+      });
+
+      let feedback =
+        pontos <= 2 ? "Ruim 😕" :
+        pontos <= 4 ? "Bom 🙂" :
+        "Excelente! 😄";
+
+      document.getElementById("resultado").textContent =
+        `Você fez ${pontos}/5 — ${feedback}`;
+    }
+
+    function reiniciar() {
+      document.getElementById("resultado").textContent = "";
+      carregarQuiz();
+    }
+
+    carregarQuiz();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title> Lista de tarefas com armazenamento (TO-DO com persistência)</title>
+</head>
+<body>
+
+  <h2>Lista de Tarefas</h2>
+
+  <input id="tarefa" placeholder="Digite uma tarefa">
+  <button onclick="adicionar()">Adicionar</button>
+
+  <ul id="lista"></ul>
+
+  <script>
+    let tarefas = JSON.parse(localStorage.getItem("tarefas")) || [];
+
+    function salvar() {
+      localStorage.setItem("tarefas", JSON.stringify(tarefas));
+    }
+
+    function renderizar() {
+      const ul = document.getElementById("lista");
+      ul.innerHTML = "";
+
+      tarefas.forEach((t, i) => {
+        const li = document.createElement("li");
+        li.textContent = t;
+
+        const btn = document.createElement("button");
+        btn.textContent = "remover";
+        btn.onclick = () => remover(i);
+
+        li.appendChild(btn);
+        ul.appendChild(li);
+      });
+    }
+
+    function adicionar() {
+      const texto = document.getElementById("tarefa").value.trim();
+      if (!texto) return;
+
+      tarefas.push(texto);
+      salvar();
+      renderizar();
+
+      document.getElementById("tarefa").value = "";
+    }
+
+    function remover(indice) {
+      tarefas.splice(indice, 1);
+      salvar();
+      renderizar();
+    }
+
+    renderizar();
+  </script>
+
+</body>
+</html>

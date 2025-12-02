@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Contador com tempo + play/pause/reset</title>
+</head>
+<body>
+
+  <h2>Contador</h2>
+
+  <h1 id="tempo">0</h1>
+
+  <button onclick="startPause()">Start</button>
+  <button onclick="startPause()">Pause</button>
+  <button onclick="resetar()">Reset</button>
+
+  <script>
+    let segundos = 0;
+    let intervalo = null;
+
+    function atualizar() {
+      document.getElementById("tempo").textContent = segundos;
+    }
+
+    function startPause() {
+      if (intervalo === null) {
+        intervalo = setInterval(() => {
+          segundos++;
+          atualizar();
+        }, 1000);
+      } else {
+        clearInterval(intervalo);
+        intervalo = null;
+      }
+    }
+
+    function resetar() {
+      clearInterval(intervalo);
+      intervalo = null;
+      segundos = 0;
+      atualizar();
+    }
+  </script>
+
+</body>
+</html>

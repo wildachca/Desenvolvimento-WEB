@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tabela Dinâmica</title>
+</head>
+<body>
+
+  <table id="tab" border="1" style="border-collapse:collapse; width:100%;">
+    <thead>
+      <tr>
+        <th>Numero</th>
+        <th>Conteúdo</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+
+ <br>
+ 
+  <button id="addBtn">Adicionar linha</button>
+  <button id="removeBtn">Remover última</button>
+
+  <script>const tab = document.getElementById('tab').getElementsByTagName('tbody')[0];
+
+    function addRow() {
+      const index = tab.rows.length + 1;
+      const row = tab.insertRow();
+      const cellIndex = row.insertCell();
+      const cellContent = row.insertCell();
+      const cellActions = row.insertCell();
+
+      cellIndex.textContent = index;
+      cellContent.textContent = 'Linha ' + index;
+      cellActions.innerHTML = "<button onclick=\"this.closest('tr').remove(); renumber()\">Remover</button>";
+    }
+
+    function removeLastRow() {
+      if (tab.rows.length > 0) {
+        tab.deleteRow(tab.rows.length - 1);
+        renumber();
+      }
+    }
+
+    function renumber() {
+      for (let i = 0; i < tab.rows.length; i++) {
+        tab.rows[i].cells[0].textContent = i + 1;
+        tab.rows[i].cells[1].textContent = 'Linha ' + (i + 1);
+      }
+    }
+
+    document.getElementById('addBtn').addEventListener('click', addRow);
+    document.getElementById('removeBtn').addEventListener('click', removeLastRow);
+  </script>
+</body>
+</html>

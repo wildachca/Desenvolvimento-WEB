@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Sistema de Distribuição de Pontos de Personagem</title>
+</head>
+<body>
+
+  <h2>Sistema de Distribuição de Pontos</h2>
+
+  <p>Pontos restantes: <span id="restante">10</span></p>
+
+  <div>
+    <h3>Força</h3>
+    <button onclick="modificar('forca', 1)">+</button>
+    <span id="forca">0</span>
+    <button onclick="modificar('forca', -1)">-</button>
+  </div>
+
+  <div>
+    <h3>Agilidade</h3>
+    <button onclick="modificar('agi', 1)">+</button>
+    <span id="agi">0</span>
+    <button onclick="modificar('agi', -1)">-</button>
+  </div>
+
+  <div>
+    <h3>Inteligência</h3>
+    <button onclick="modificar('int', 1)">+</button>
+    <span id="int">0</span>
+    <button onclick="modificar('int', -1)">-</button>
+  </div>
+
+  <br>
+  <button onclick="confirmar()">Confirmar Distribuição</button>
+
+  <p id="resultado"></p>
+
+  <script>
+    let restante = 10;
+
+    function modificar(atributo, valor) {
+      const spanAttr = document.getElementById(atributo);
+      let atual = Number(spanAttr.textContent);
+
+      if (valor === 1 && restante === 0) return;
+      if (valor === -1 && atual === 0) return;
+
+      atual += valor;
+      spanAttr.textContent = atual;
+      restante -= valor;
+      document.getElementById("restante").textContent = restante;
+    }
+
+    function confirmar() {
+      const res = document.getElementById("resultado");
+
+      if (restante > 0) {
+        res.textContent = "Você ainda tem pontos para distribuir!";
+      } else {
+        const f = document.getElementById("forca").textContent;
+        const a = document.getElementById("agi").textContent;
+        const i = document.getElementById("int").textContent;
+
+        res.innerHTML = `
+          <strong>Distribuição final:</strong><br>
+          Força: ${f}<br>
+          Agilidade: ${a}<br>
+          Inteligência: ${i}
+        `;
+      }
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Mini Quiz (3 perguntas)</title>
+</head>
+<body>
+
+  <h2>Mini Quiz</h2>
+
+  <p>1. Qual linguagem roda no navegador?</p>
+  <input type="radio" name="q1" value="certo">JavaScript<br>
+  <input type="radio" name="q1" value="errado">Python<br>
+  <input type="radio" name="q1" value="errado">C<br>
+
+  <p>2. Qual tag cria parágrafos?</p>
+  <input type="radio" name="q2" value="certo">&lt;p&gt;<br>
+  <input type="radio" name="q2" value="errado">&lt;div&gt;<br>
+  <input type="radio" name="q2" value="errado">&lt;h1&gt;<br>
+
+  <p>3. Qual comando mostra texto no console?</p>
+  <input type="radio" name="q3" value="certo">console.log()<br>
+  <input type="radio" name="q3" value="errado">alerta()<br>
+  <input type="radio" name="q3" value="errado">print()<br>
+
+  <br>
+  <button onclick="finalizar()">Finalizar</button>
+
+  <p id="resultado"></p>
+
+  <script>
+    function finalizar() {
+      let acertos = 0;
+
+      if (document.querySelector("input[name='q1']:checked")?.value === "certo") acertos++;
+      if (document.querySelector("input[name='q2']:checked")?.value === "certo") acertos++;
+      if (document.querySelector("input[name='q3']:checked")?.value === "certo") acertos++;
+
+      document.getElementById("resultado").textContent =
+        "Você acertou " + acertos + " de 3!";
+    }
+  </script>
+
+</body>
+</html>

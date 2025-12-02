@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Sistema simples de cadastro com lista dinâmica</title>
+</head>
+<body>
+
+  <h2>Cadastro</h2>
+
+  <input id="nome" placeholder="Nome">
+  <input id="idade" placeholder="Idade" type="number">
+  <button onclick="cadastrar()">Cadastrar</button>
+
+  <ul id="lista"></ul>
+
+  <script>
+    let alunos = [];
+
+    function renderizar() {
+      const ul = document.getElementById("lista");
+      ul.innerHTML = "";
+
+      alunos.forEach((a, i) => {
+        const li = document.createElement("li");
+        li.textContent = a.nome + " - " + a.idade + " anos ";
+
+        const btn = document.createElement("button");
+        btn.textContent = "Excluir";
+        btn.onclick = () => remover(i);
+
+        li.appendChild(btn);
+        ul.appendChild(li);
+      });
+    }
+
+    function cadastrar() {
+      const nome = document.getElementById("nome").value.trim();
+      const idade = document.getElementById("idade").value;
+
+      if (!nome || !idade) return;
+
+      alunos.push({ nome, idade });
+      renderizar();
+
+      document.getElementById("nome").value = "";
+      document.getElementById("idade").value = "";
+    }
+
+    function remover(i) {
+      alunos.splice(i, 1);
+      renderizar();
+    }
+  </script>
+
+</body>
+</html>

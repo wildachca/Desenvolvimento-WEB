@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validação simples de formulário</title>
+</head>
+<body>
+    <input id="n" placeholder="Nome"><br>
+    <input id="e" placeholder="Email"><br>
+    <textarea id="m" placeholder="Mensagem"></textarea><br>
+
+<button onclick="validar()">Enviar</button>
+
+<script>
+function validar(){
+    if(!n.value || !e.value || !m.value)
+        alert("Preencha tudo!")
+    else
+        alert("Enviado!")
+}
+</script>
+
+</body>
+</html>

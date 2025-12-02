@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Galeria com troca automática e manual</title>
+</head>
+<body>
+
+  <h2>Galeria</h2>
+
+  <img id="principal" src="./assets/img/1000057856.jpg" width="300">
+
+  <br><br>
+
+  <img src="./assets/img/1000057849.jpg" width="80" onclick="trocar(0)">
+  <img src="./assets/img/1000057855.jpg" width="80" onclick="trocar(1)">
+  <img src="./assets/img/1000057858.jpg" width="80" onclick="trocar(2)">
+  <img src="./assets/img/1000057859.jpg" width="80" onclick="trocar(3)">
+
+  <br><br>
+
+  <button onclick="pausar()">Pause Auto</button>
+
+  <script>
+    const imagens = ["./assets/img/1000057849.jpg", "./assets/img/1000057855.jpg", "./assets/img/1000057858.jpg", "./assets/img/1000057859.jpg"];
+    let indice = 0;
+    let intervalo = setInterval(proxima, 2000);
+
+    function trocar(i) {
+      indice = i;
+      document.getElementById("principal").src = imagens[indice];
+    }
+
+    function proxima() {
+      indice = (indice + 1) % imagens.length;
+      trocar(indice);
+    }
+
+    function pausar() {
+      clearInterval(intervalo);
+      intervalo = null;
+    }
+  </script>
+
+</body>
+</html>
