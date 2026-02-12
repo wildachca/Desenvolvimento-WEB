@@ -1,9 +1,8 @@
-const op = require('./operacoes');
+const v = require('./projetoCalculadora/utils/validacoes');
 
-const n1 = 10;
-const n2 = 5;
 
-console.log("Soma:", op.somar(n1, n2));
-console.log("Subtração:", op.subtrair(n1, n2));
-console.log("Multiplicação:", op.multiplicar(n1, n2));
-console.log("Divisão:", op.dividir(n1, n2));
+console.log("Nome válido?", v.validarNome("Wil"));
+console.log("Idade válida?", v.validarIdade(17));
+
+console.log("Nome válido?", v.validarNome("Lili"));
+console.log("Idade válida?", v.validarIdade(0));
