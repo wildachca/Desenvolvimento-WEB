@@ -1,9 +1,13 @@
+app.post('/usuarios', (req, res) => {
 
-const express = require('express');
-const app = express();
+    if (!req.body.nome || !req.body.idade) {
+        return res.status(400).json({ erro: "Nome e idade são obrigatórios" });
+    }
 
-app.use(express.static('public'));
+    const usuario = req.body;
 
-app.listen(3000, () => {
-    console.log("Servidor rodando");
+    usuarios.push(usuario);
+
+    res.status(201).json(usuario);
+
 });
