@@ -1,14 +1,25 @@
 const express = require("express");
-const app = express();
-
-const usuariosRoutes = require("./routes/usuarios");
-
-app.use(express.json());
-app.use(express.static("public"));
-
-app.use("/usuarios", usuariosRoutes);
+const router = express.Router();
 
 let usuarios = [];
+
+router.get("/", (req, res) => {
+  res.json(usuarios);
+});
+
+router.post("/", (req, res) => {
+
+  const usuario = req.body;
+
+  usuarios.push(usuario);
+
+  res.status(201).json(usuario);
+
+});
+
+module.exports = router;
+
+
 let proximoId = 1;
 
 app.get('/api/usuarios', (req, res) => {
@@ -50,7 +61,3 @@ app.post('/api/usuarios', (req, res) => {
     usuarios.push(req.body);
     res.json({ mensagem: "Usuário cadastrado" });
 });
-
-app.listen(3000, () => {
-       console.log("Servidor rodando em http://localhost:3000");
- });
