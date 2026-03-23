@@ -1,100 +1,35 @@
-const express = require("express")
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 
-let usuarios = []
-let proximoId = 1
+const usuariosController = require("../controllers/usuariosController");
 
-function buscarUsuarioPorId(id){
-return usuarios.find(u => u.id === id)
-}
+router.get("/", usuariosController.listarUsuarios);
 
-function criarUsuario(req,res){
+router.get("/:id", usuariosController.buscarUsuario);
 
-const {nome,idade,email} = req.body
+router.post("/", usuariosController.criarUsuario);
 
-if(!nome || nome.trim()===""){
-return res.status(400).json({erro:"Nome é obrigatório"})
-}
+router.put("/:id", usuariosController.atualizarUsuario);
 
-if(nome.length < 3){
-return res.status(400).json({erro:"Nome deve ter no mínimo 3 caracteres"})
-}
+router.delete("/:id", usuariosController.deletarUsuario);
 
-if(idade < 0 || idade > 120){
-return res.status(400).json({erro:"Idade inválida"})
-}
+module.exports = router;
 
-if(!email || !email.includes("@")){
-return res.status(400).json({erro:"Email inválido"})
-}
+async function criarUsuario(nome, idade) {
 
-const novoUsuario={
-id:proximoId++,
-nome,
-idade,
-email
-}
+    if (!nome || nome.trim() === "") {
+        throw new Error("Nome é obrigatório");
+    }
 
-usuarios.push(novoUsuario)
+    const resultado = await pool.query(
+        `
+        INSERT INTO usuarios (nome, idade)
+        VALUES ($1, $2)
+        RETURNING *
+        `,
+        [nome, idade]
+    );
 
-res.status(201).json(novoUsuario)
+    return resultado.rows[0];
 
 }
-
-router.get("/",(req,res)=>{
-res.json(usuarios)
-})
-
-router.get("/:id",(req,res)=>{
-const usuario=buscarUsuarioPorId(Number(req.params.id))
-if(!usuario){
-return res.status(404).json({erro:"Usuário não encontrado"})
-}
-res.json(usuario)
-})
-
-router.post("/",criarUsuario)
-
-router.delete("/:id",(req,res)=>{
-const id=Number(req.params.id)
-const index=usuarios.findIndex(u=>u.id===id)
-
-if(index===-1){
-return res.status(404).json({erro:"Usuário não encontrado"})
-}
-
-usuarios.splice(index,1)
-res.status(204).send()
-})
-
-router.put("/:id",(req,res)=>{
-
-const usuario=buscarUsuarioPorId(Number(req.params.id))
-
-if(!usuario){
-return res.status(404).json({erro:"Usuário não encontrado"})
-}
-
-const {nome,idade,email}=req.body
-
-if(!nome || nome.length<3){
-return res.status(400).json({erro:"Nome inválido"})
-}
-
-if(idade<0 || idade>120){
-return res.status(400).json({erro:"Idade inválida"})
-}
-
-if(!email || !email.includes("@")){
-return res.status(400).json({erro:"Email inválido"})
-}
-
-usuario.nome=nome
-usuario.idade=idade
-usuario.email=email
-
-res.json(usuario)
-
-})
-
-module.exports=router
