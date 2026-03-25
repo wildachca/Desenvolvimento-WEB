@@ -1,13 +1,18 @@
-const express = require("express")
-const app = express()
+const express = require("express");
+const path = require("path");
 
-const usuariosRoutes = require("./routes/usuarios")
+const usuariosRoutes = require("./routes/usuarios");
 
-app.use(express.json())
-app.use(express.static("public"))
+const app = express();
 
-app.use("/api/usuarios", usuariosRoutes)
+app.use(express.json());
 
-app.listen(3000, ()=>{
-    console.log("http://localhost:3000")
-})
+// Servir frontend
+app.use(express.static(path.join(__dirname, "public")));
+
+// Rotas API
+app.use("/api/usuarios", usuariosRoutes);
+
+app.listen(3000, () => {
+    console.log("Servidor rodando em http://localhost:3000");
+});

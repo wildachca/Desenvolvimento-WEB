@@ -1,35 +1,18 @@
-const express = require("express")
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 
-const service = require("../services/usuariosService")
+const controller = require("../controllers/usuariosController");
 
-router.get("/", async (req,res)=>{
-    const usuarios = await service.listarUsuarios()
-    res.json(usuarios)
-})
+// IMPORTANTE: ordem correta
+router.get("/total", controller.totalUsuarios);
+router.get("/idade/:min", controller.listarPorIdade);
+router.get("/ordenados", controller.listarOrdenados);
+router.get("/estatisticas", controller.estatisticas);
 
-router.post("/", async (req,res)=>{
-    try{
-        const { nome, idade } = req.body
-        await service.criarUsuario(nome, idade)
+router.get("/", controller.listarUsuarios);
+router.get("/:id", controller.buscarUsuario);
+router.post("/", controller.criarUsuario);
+router.put("/:id", controller.atualizarUsuario);
+router.delete("/:id", controller.deletarUsuario);
 
-        res.json(resultado)
-    }catch(erro){
-        res.status(400).json({ erro: erro.message })
-    }
-})
-
-router.get("/total", async (req,res)=>{
-    const total = await service.totalUsuarios()
-    res.json({ total })
-})
-
-router.get("/idade/:min", async (req,res)=>{
-    const min = req.params.min
-
-    const usuarios = await service.buscarPorIdade(min)
-
-    res.json(usuarios)
-})
-
-module.exports = router
+module.exports = router;
